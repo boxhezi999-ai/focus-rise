@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#fbfaf7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Focus Rise" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg?v=4.4" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-v44.png" />
+  <title>Focus Rise · 专注进阶</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-gold.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow" id="eyebrow">今天也要好好生活</p><h1 id="page-title">待办</h1></div>
+      <button class="icon-btn" id="add-task" aria-label="添加任务">＋</button>
+    </header>
+
+    <section class="page active" data-page="tasks">
+      <div class="hero-card"><div><p>今日专注</p><strong id="today-focus">0 分钟</strong><small>每一分钟都在提升你的段位</small></div><div class="mini-tree">◆</div></div>
+      <div class="section-head"><h2>我的任务</h2><span>长按编辑 · 拖动排序</span></div>
+      <div id="task-list" class="task-list"></div>
+      <div id="task-empty" class="empty"><div>☁️</div><b>还没有任务</b><p>添加一件想专注完成的事吧</p></div>
+    </section>
+
+    <section class="page" data-page="stats">
+      <div class="period-switch"><button class="active" data-period="week">本周</button><button data-period="month">本月</button><button data-period="all">全部</button></div>
+      <div class="metric-grid"><article><span>专注时长</span><strong id="stat-duration">0<small> 分钟</small></strong><em>累计完成</em></article><article><span>专注次数</span><strong id="stat-count">0<small> 次</small></strong><em>每一次都算数</em></article></div>
+      <article class="chart-card"><div class="section-head"><h2>专注时长分布</h2></div><div class="donut-wrap"><div class="donut" id="donut"><span id="donut-total">0m</span></div><div id="legend" class="legend"></div></div></article>
+      <article class="chart-card"><div class="section-head"><h2>专注时段分布</h2><span id="stats-range-label">本周</span></div><div class="bar-chart" id="bar-chart"></div><div class="axis"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div></article>
+    </section>
+
+    <section class="page" data-page="forest">
+      <article class="rank-hero" id="rank-hero"><div class="rank-light"></div><div class="rank-top"><span>DAILY FOCUS RANK</span><em id="rank-number">RANK 01</em></div><div class="rank-emblem"><div class="rank-shield"><i id="rank-icon">Ⅲ</i></div></div><p>今日段位</p><h2 id="rank-name">青铜</h2><div class="rank-total"><b id="rank-hours">0</b><span id="rank-unit">今日专注分钟</span></div><div class="rank-progress"><i id="rank-progress-bar"></i></div><small id="rank-progress-text">再专注 60 分钟晋级白银</small></article>
+      <div class="rank-stats"><article><i>◈</i><b id="rank-today">0分钟</b><span>今日时长</span></article><article><i>◇</i><b id="rank-sessions">0</b><span>今日局数</span></article><article><i>▲</i><b id="rank-streak">0</b><span>连续天数</span></article></div>
+      <button class="rank-daily" id="daily-card-open"><div><span id="rank-date">今日战绩</span><h3>每日打卡</h3></div><strong>+<b id="rank-daily-xp">0</b><small> EXP</small></strong><p id="rank-daily-copy">点开生成今日专注卡片</p><em>生成分享卡片　›</em></button>
+      <article class="rank-ladder-card"><div class="section-head"><h2>今日段位之路</h2><span id="rank-unlocked">1 / 7</span></div><p class="daily-reset-note">每日 00:00 重置段位，专注记录和徽章不会清除</p><div class="rank-ladder" id="rank-ladder"></div></article>
+      <article class="achievement-card"><div class="section-head"><h2>荣誉徽章 <small>永久累计</small></h2><span id="achievement-count">0 / 6</span></div><div class="achievement-grid" id="achievement-grid"></div></article>
+    </section>
+
+    <section class="page" data-page="timeline">
+      <div class="calendar-head"><button id="prev-month">‹</button><strong id="month-label"></strong><button id="next-month">›</button></div>
+      <div class="calendar-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+      <div class="calendar" id="calendar"></div>
+      <div class="section-head"><h2 id="timeline-date">今日记录</h2><span id="timeline-total"></span></div>
+      <div class="timeline-list" id="timeline-list"></div>
+    </section>
+
+    <section class="page" data-page="profile">
+      <article class="profile-card"><div class="avatar">◆</div><div><strong id="profile-name">Focus Riser</strong><p id="profile-subtitle">每一次专注，都是一次进阶</p></div><button id="login-btn">登录</button></article>
+      <article class="data-notice cloud-notice" id="data-notice"><div class="notice-icon">☁</div><div><b id="cloud-title">云端同步</b><p id="cloud-status">登录后跨设备保存任务、记录和段位</p></div><button id="cloud-sync">登录</button></article>
+      <div class="settings"><button id="install-app"><span>📲 安装到手机桌面</span><em id="install-label">安装　›</em></button><button id="guide-btn"><span>🧭 使用教学</span><em>重新查看　›</em></button><button id="goal-btn"><span>🎯 专注目标</span><em id="goal-label">每日 2 小时　›</em></button><button id="reminder"><span>🔔 完成提醒</span><em id="reminder-label">已开启　›</em></button><button id="sound"><span>🔊 专注音效</span><em id="sound-label">清脆铃声　›</em></button><button id="font-size"><span>🔤 字体大小</span><em id="font-size-label">标准　›</em></button><button id="theme"><span>🌙 深色模式</span><i class="toggle"></i></button><button id="export"><span>📦 导出专注数据</span><em>›</em></button><button id="feedback-btn"><span>💬 功能反馈</span><em>提交建议　›</em></button><button id="about"><span>🌿 关于与更新</span><em id="version-label" class="update-check-hint">点击检查更新　›</em></button></div>
+    </section>
+
+    <nav class="tabbar">
+      <button class="active" data-tab="tasks"><i>✓</i><span>待办</span></button><button data-tab="stats"><i>◔</i><span>数据</span></button><button data-tab="forest"><i>◆</i><span>段位</span></button><button data-tab="timeline"><i>▦</i><span>时间轴</span></button><button data-tab="profile"><i>○</i><span>我的</span></button>
+    </nav>
+  </main>
+
+  <div class="modal" id="task-modal"><div class="sheet"><div class="sheet-handle"></div><h2 id="modal-title">添加任务</h2><label>任务名称<input id="task-name" maxlength="30" placeholder="例如：阅读、写报告" /></label><label>计时方式<div class="segmented"><button data-mode="countdown" class="active">倒计时</button><button data-mode="countup">正向计时</button></div></label><label id="duration-label">专注时长<div class="duration-row"><button data-min="25">25</button><button data-min="45">45</button><button data-min="60">60</button><input id="duration" type="number" min="1" max="999" value="25" /><span>分钟</span></div></label><div class="sheet-actions"><button class="danger hidden" id="delete-task">删除</button><button class="ghost" data-close>取消</button><button class="primary" id="save-task">保存</button></div></div></div>
+  <div class="timer-screen" id="timer-screen"><div class="timer-top"><span>专注中</span></div><div class="timer-center"><p class="timer-kicker">FOCUS SESSION</p><div class="timer-orbit"><div><span id="timer-display">25:00</span><p id="timer-mode">倒计时</p></div></div><h2 id="timer-task-name"></h2><p>保持节奏，向下一段位前进</p></div><div class="timer-actions"><button id="pause-timer"><i>Ⅱ</i><span>暂停</span></button><button id="stop-timer" class="stop"><i>■</i><span>完成</span></button></div></div>
+  <div class="modal" id="daily-card-modal"><div class="sheet daily-share-sheet"><div class="sheet-handle"></div><div class="share-title"><div><span>DAILY RECORD</span><h2>今日专注卡片</h2></div><button id="close-daily-card">×</button></div><canvas id="daily-share-canvas" width="900" height="1200"></canvas><div class="daily-share-actions"><button id="save-daily-card">保存图片</button><button class="primary" id="share-daily-card">分享卡片</button></div></div></div>
+  <div class="modal" id="rest-modal"><div class="sheet rest-sheet"><div class="rest-mark">☕</div><p>HEALTHY FOCUS</p><h2 id="rest-title">该休息一下了</h2><div id="rest-message">长时间专注后，请起身活动、喝水并放松眼睛。</div><button class="primary" id="rest-close">知道了，去休息</button></div></div>
+  <div class="modal" id="timeline-edit-modal"><div class="sheet timeline-edit-sheet"><div class="sheet-handle"></div><p class="timeline-edit-kicker">TIMELINE EDIT</p><h2>编辑专注记录</h2><p id="timeline-edit-task"></p><label>开始时间<input id="timeline-edit-start" type="time" step="60"></label><label>专注时长<div class="timeline-duration-input"><input id="timeline-edit-duration" type="number" min="1" max="1440" inputmode="numeric"><span>分钟</span></div></label><div class="timeline-edit-preview" id="timeline-edit-preview"></div><div class="timeline-edit-error hidden" id="timeline-edit-error"></div><div class="sheet-actions"><button class="ghost" id="timeline-edit-cancel">取消</button><button class="primary" id="timeline-edit-save">保存调整</button></div></div></div>
+  <div class="modal" id="update-modal"><div class="sheet update-sheet"><div class="sheet-handle"></div><div class="update-mark">🌿</div><h2 id="update-title">发现新版本</h2><p id="update-notes"></p><small>更新只替换程序文件，不会删除任务和专注记录。</small><div class="update-actions"><button id="skip-update">不再提醒此版本</button><button id="later-update">稍后提醒</button><button class="primary" id="install-update">立即更新</button></div></div></div>
+  <div class="modal" id="feedback-modal"><div class="sheet feedback-sheet"><div class="sheet-handle"></div><h2>功能反馈</h2><p>告诉我们你遇到的问题，或希望新增的功能。</p><form id="feedback-form" name="focus-grove-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="focus-grove-feedback"><p class="hidden"><label>请勿填写<input name="bot-field"></label></p><label>反馈类型<select name="type" required><option value="功能建议">功能建议</option><option value="问题报告">问题报告</option><option value="使用咨询">使用咨询</option><option value="其他">其他</option></select></label><label>反馈内容<textarea name="message" maxlength="1000" required placeholder="请尽量说明操作步骤和期望结果"></textarea></label><label>联系方式（选填）<input name="contact" maxlength="100" placeholder="邮箱或其他联系方式"></label><input type="hidden" name="app-version" value="2.12"><div class="sheet-actions"><button type="button" class="ghost" id="close-feedback">取消</button><button type="submit" class="primary" id="submit-feedback">提交反馈</button></div></form></div></div>
+  <div class="modal" id="auth-modal"><div class="sheet auth-sheet"><div class="sheet-handle"></div><div class="auth-mark">◆</div><h2 id="auth-title">登录 Focus Rise</h2><p id="auth-copy">登录后，任务、专注记录、段位和设置会安全同步到云端。</p><div id="auth-signed-out"><label>邮箱<input id="auth-email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com"></label><label>密码<input id="auth-password" type="password" autocomplete="current-password" minlength="6" placeholder="至少 6 位"></label><div class="auth-actions"><button id="auth-register">注册账号</button><button class="primary" id="auth-login">登录</button></div><small>首次登录会先备份本机数据，再上传到你的账号。</small></div><div id="auth-signed-in" class="hidden"><div class="auth-account"><span>当前账号</span><b id="auth-user-email"></b><p id="auth-sync-detail">云端已连接</p></div><div class="auth-actions"><button id="auth-logout">退出登录</button><button class="primary" id="auth-sync-now">立即同步</button></div></div><button class="auth-close" id="auth-close">关闭</button></div></div>
+  <div class="guide-overlay" id="guide-modal"><button class="guide-skip" id="guide-skip">跳过</button><div class="guide-card"><div class="guide-visual" id="guide-icon">🌱</div><p class="guide-step" id="guide-step">1 / 5</p><h2 id="guide-title"></h2><p id="guide-text"></p><div class="guide-dots" id="guide-dots"></div><div class="guide-actions"><button id="guide-prev">上一步</button><button class="primary" id="guide-next">下一步</button></div></div></div>
+  <div class="toast" id="toast"></div>
+<script src="supabase.min.js?v=5.0"></script>
+<script src="app.js?v=5.1"></script>
+</body>
+</html>
