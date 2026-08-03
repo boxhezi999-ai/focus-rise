@@ -1,5 +1,5 @@
 {
-  "version": "5.1",
+  "version": "5.2",
   "name": "Focus Rise",
-  "notes": "Focus Rise 5.1：时间轴记录支持编辑开始时间和时长，自动阻止重叠与跨日记录；退出软件时自动停止当前计时并保存有效记录。"
+  "notes": "Focus Rise 5.2：功能反馈已接入邮箱通知，并兼容 GitHub Pages；提交成功与失败状态更加清晰。"
 }

@@ -1,6 +1,6 @@
 const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>[...p.querySelectorAll(s)];
 const KEY='yimu-focus-v1';
-const CURRENT_VERSION='5.1';
+const CURRENT_VERSION='5.2';
 const SUPABASE_URL='https://qscxabuyhmkwmytawsjw.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_mGJvICZqty4HlkfQa4mgyw_qjL5fLQw';
 // randomUUID 在局域网 HTTP 页面中不可用，使用兼容安全/非安全环境的 ID。
@@ -110,7 +110,7 @@ function checkStartupUpdateConsent(){if(!state.onboardingDone)return;if(compareV
 $('#theme').onclick=()=>{state.dark=!state.dark;document.body.classList.toggle('dark',state.dark);save()};$('#about').onclick=()=>checkForUpdate(true);
 function renderFontSize(){if(!['standard','large','xlarge'].includes(state.fontSize))state.fontSize='standard';document.body.classList.remove('font-large','font-xlarge');document.documentElement.dataset.fontSize=state.fontSize;if(state.fontSize==='large')document.body.classList.add('font-large');if(state.fontSize==='xlarge')document.body.classList.add('font-xlarge');$('#font-size-label').textContent={standard:'标准　›',large:'大字　›',xlarge:'特大　›'}[state.fontSize]}
 $('#font-size').onclick=()=>{state.fontSize={standard:'large',large:'xlarge',xlarge:'standard'}[state.fontSize];save();renderFontSize();toast(`已切换为${{standard:'标准字体',large:'大字体',xlarge:'特大字体'}[state.fontSize]}`)};
-$('#feedback-btn').onclick=()=>$('#feedback-modal').classList.add('open');$('#close-feedback').onclick=()=>$('#feedback-modal').classList.remove('open');$('#feedback-form').onsubmit=async event=>{event.preventDefault();if(location.protocol==='file:')return alert('本地预览无法提交反馈，发布到 Netlify 后即可使用。');const form=event.currentTarget,button=$('#submit-feedback');button.disabled=true;button.textContent='正在提交…';try{const body=new URLSearchParams(new FormData(form));const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});if(!response.ok)throw new Error('submit');form.reset();$('#feedback-modal').classList.remove('open');toast('感谢反馈，已成功提交')}catch(error){alert('反馈暂时未能提交，请检查网络后重试。')}finally{button.disabled=false;button.textContent='提交反馈'}};
+$('#feedback-btn').onclick=()=>$('#feedback-modal').classList.add('open');$('#close-feedback').onclick=()=>$('#feedback-modal').classList.remove('open');$('#feedback-form').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget,button=$('#submit-feedback');button.disabled=true;button.textContent='正在提交…';try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('submit');form.reset();$('#feedback-modal').classList.remove('open');toast('感谢反馈，建议已发送到开发者邮箱')}catch(error){alert('反馈暂时未能提交，请检查网络后重试。')}finally{button.disabled=false;button.textContent='提交反馈'}};
 $('#export').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Focus-Rise-专注数据.json';a.click();URL.revokeObjectURL(a.href);toast('数据已导出')};
 function renderAll(){renderTasks();renderStats();renderForest();renderCalendar();renderTimeline();renderGoal();renderPreferences();renderFontSize()}document.body.classList.toggle('dark',state.dark);renderAll();
 
