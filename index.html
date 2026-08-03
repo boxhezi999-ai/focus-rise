@@ -30,9 +30,9 @@
     </section>
 
     <section class="page" data-page="stats">
-      <div class="period-switch"><button class="active" data-period="week">本周</button><button data-period="month">本月</button><button data-period="all">全部</button></div>
+<div class="period-switch"><button class="active" data-period="day">日</button><button data-period="week">周</button><button data-period="month">月</button><button data-period="all">全部</button></div>
       <div class="metric-grid"><article><span>专注时长</span><strong id="stat-duration">0<small> 分钟</small></strong><em>累计完成</em></article><article><span>专注次数</span><strong id="stat-count">0<small> 次</small></strong><em>每一次都算数</em></article></div>
-      <article class="chart-card"><div class="section-head"><h2>专注时长分布</h2></div><div class="donut-wrap"><div class="donut" id="donut"><span id="donut-total">0m</span></div><div id="legend" class="legend"></div></div><div id="project-stats-filter" class="period-switch project-stats-filter"></div></article>
+<article class="chart-card"><div class="section-head stats-distribution-head"><h2>专注时长分布</h2><div id="stats-day-nav" class="stats-day-nav"><button id="stats-prev-day" aria-label="前一天">‹</button><time id="stats-date-label"></time><button id="stats-next-day" aria-label="后一天">›</button></div></div><div class="donut-wrap"><div class="donut" id="donut"><span id="donut-total">0m</span></div><div id="legend" class="legend"></div></div><div id="project-stats-filter" class="period-switch project-stats-filter"></div></article>
       <article class="chart-card"><div class="section-head"><h2>专注时段分布</h2><span id="stats-range-label">本周</span></div><div class="bar-chart" id="bar-chart"></div><div class="axis"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div></article>
     </section>
 
@@ -48,7 +48,8 @@
       <div class="calendar-head"><button id="prev-month">‹</button><strong id="month-label"></strong><button id="next-month">›</button></div>
       <div class="calendar-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
       <div class="calendar" id="calendar"></div>
-      <div class="section-head"><h2 id="timeline-date">今日记录</h2><span id="timeline-total"></span></div>
+<div class="section-head timeline-record-head"><h2 id="timeline-date">今日记录</h2><span id="timeline-total"></span></div>
+<div class="timeline-summary" id="timeline-summary"></div>
       <div class="timeline-list" id="timeline-list"></div>
     </section>
 
@@ -81,6 +82,6 @@
   <iframe name="feedback-submit-frame" id="feedback-submit-frame" class="hidden" title="反馈提交"></iframe>
   <div class="toast" id="toast"></div>
 <script src="supabase.min.js?v=5.0"></script>
-<script src="app.js?v=6.5"></script>
+<script src="app.js?v=6.6"></script>
 </body>
 </html>
