@@ -1,4 +1,4 @@
-const CACHE='focus-rise-v5.2';
+const CACHE='focus-rise-v5.4';
 const ASSETS=['./','./index.html','./styles.css','./theme-gold.css','./app.js','./supabase.min.js','./manifest.webmanifest','./icon.svg','./apple-touch-icon-v44.png','./icon-v44-192.png','./icon-v44-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
 self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting()});

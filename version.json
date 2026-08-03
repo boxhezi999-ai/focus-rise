@@ -1,5 +1,5 @@
 {
-  "version": "5.2",
+  "version": "5.4",
   "name": "Focus Rise",
-  "notes": "Focus Rise 5.2：功能反馈已接入邮箱通知，并兼容 GitHub Pages；提交成功与失败状态更加清晰。"
+  "notes": "Focus Rise 5.4：新增项目夹与项目任务、按项目查看专注分布、数据复制导入与备份，并修复时间轴编辑框超出手机屏幕的问题。"
 }
