@@ -1,5 +1,5 @@
-const CACHE='focus-rise-v6.0';
-const ASSETS=['./','./index.html','./styles.css','./theme-gold.css','./app.js','./supabase.min.js','./manifest.webmanifest','./icon.svg','./apple-touch-icon-v44.png','./icon-v44-192.png','./icon-v44-512.png'];
+const CACHE='focus-rise-v6.2';
+const ASSETS=['./','./index.html','./styles.css','./theme-gold.css','./app.js','./supabase.min.js','./manifest.webmanifest','./icon.svg','./apple-touch-icon-v44.png','./icon-v44-192.png','./icon-v44-512.png','./rank-01.gif','./rank-02.gif','./rank-03.jpg','./rank-04.gif','./rank-05.gif','./rank-06.gif','./rank-07.jpg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
 self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
